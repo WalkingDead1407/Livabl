@@ -1,8 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import health, wards, compare
-import logging
+from app.cache import data_cache
+from app.data.ingestion import load_geojson
 from app.config import setup_logging
+import logging
 
 logger = logging.getLogger(__name__)
 setup_logging()
@@ -40,6 +43,29 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "Livebl API running"}
+
+@app.on_event("startup")
+async def startup_event():
+    try:
+        logger.info("Starting Livebl API...")
+        # Load data into cache
+        data_cache.load(load_geojson, "wards_score.geojson")
+        logger.info(
+            f"Cache loaded successfully with {data_cache.size()} wards"
+        )
+    except Exception as e:
+        logger.error(
+            f"Failed to load cache on startup: {e}. "
+            f"API will return 503 until data is available.",
+            exc_info=True
+        )
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    logger.info("Livebl API shutting down...")
+    data_cache.clear()
+    logger.info("✓ Cache cleared")
+
 
 app.include_router(health.router)
 app.include_router(wards.router)
