@@ -8,7 +8,7 @@
 [![Built with OSM](https://img.shields.io/badge/Maps-OpenStreetMap-blue)](https://www.openstreetmap.org)
 [![React](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-61DAFB)](https://react.dev)
 [![Python](https://img.shields.io/badge/Backend-Python%20%2B%20FastAPI-3776AB)](https://fastapi.tiangolo.com)
-[![FossHack 2026](https://img.shields.io/badge/FossHack-2026-orange)](https://fossunited.org)
+[![Originally for FossHack 2026](https://img.shields.io/badge/Originally%20for%20FOSSHack-2026-orange)](https://fossunited.org)
 
 Livabl is an open-source platform that aggregates public urban datasets to generate a **0–100 Quality of Life score** for every ward in Delhi NCR. It helps renters, homebuyers, researchers, and urban planners make informed decisions through comparable locality insights and an interactive map.
 
@@ -130,7 +130,7 @@ Livabl/
 │   │   │   └── schemas.py     # Pydantic data models
 │   │   └── scoring/           # Score computation engine
 |   |       ├── engine.py
-|   |       └── metrics.py      
+|   |       └── metrics.py
 │   └── data/
 │       ├── raw/               # Source GeoJSON files
 │       └── processed/         # Scored ward data
@@ -223,14 +223,15 @@ If the UI is stuck on `Loading neighborhoods…`:
 
 ## Contributing
 
-Contributions are welcome! This project is built for FossHack 2026.
+Contributions are welcome!
 
 1. Fork the repo
 2. Create a feature branch (`git checkout -b feat/your-feature`)
 3. Commit your changes (`git commit -m "feat: add your feature"`)
 4. Push and open a pull request
 
-Please open an issue before starting work on a large feature so we can coordinate.
+Please post any issues on discussions and open an issue before starting work on a feature so we can coordinate.
+You can leave a comment below the issue so that we can assign it to you.
 
 ---
 
