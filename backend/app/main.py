@@ -6,12 +6,13 @@ from app.cache import data_cache
 from app.data.ingestion import load_geojson
 from app.config import setup_logging
 import logging
+from app.api import health, wards, compare, metrics
 
 logger = logging.getLogger(__name__)
 setup_logging()
-app = FastAPI(title="Livebl API"
-              decription="Quality of Life Index"
-              version="1.0.0")
+app = FastAPI(title="Livebl API",
+              decription="Quality of Life Index",
+              version="1.0.1")
 
 
 @app.exception_handler(Exception)
@@ -70,5 +71,5 @@ async def shutdown_event():
 app.include_router(health.router)
 app.include_router(wards.router)
 app.include_router(compare.router)
-
+app.include_router(metrics.router)
 
