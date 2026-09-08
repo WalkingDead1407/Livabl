@@ -1,8 +1,8 @@
-mport json
+import json
 import logging
 from typing import Dict, List
 import geopandas as gpd
-from scoring.engine import ScoringEngine
+from app.scoring.engine import ScoringEngine
 
 logger = logging.getLogger(__name__)
 
