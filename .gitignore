@@ -19,3 +19,5 @@ data/livebl.db
 # Data that should not be tracked
 backend/cache/
 backend/data/raw/
+
+logs/

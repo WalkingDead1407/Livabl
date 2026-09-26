@@ -4,6 +4,7 @@ from typing import List
 from app.data.wards import get_all_wards, get_ward_by_id
 from app.scoring.engine import compute_score
 from app.schemas.ward import WardResponse, WardDetailResponse
+from app.exceptions import WardNotFoundError, InvalidInputError, EmptyDatasetError
 import logging
 
 logger = logging.getLogger(__name__)
