@@ -10,13 +10,9 @@ def compute_score(ward: Dict[str, Any]) -> Dict[str, Any]:
         "landfill_score",
     ]
 
-    values = [float(ward.get(k, 0)) for k in keys]
+    values = [float(ward[k]) for k in keys if ward.get(k) is not None]
     if not values:
         return {"score": 0, "metrics": {}}
-
     score = sum(values) / len(values)
-
-    return {
-        "score": round(score, 2),
-        "metrics": {k: ward.get(k, 0) for k in keys},
-    }
+    return {"score": round(score, 2),
+        "metrics": {k: ward[k] for k in keys if ward.get(k) is not None},}

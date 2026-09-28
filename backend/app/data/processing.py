@@ -3,9 +3,9 @@ from socket import TCP_FASTOPEN_CONNECT
 from typing import Dict, List, Any, Optional
 
 try:
-    from schemas import WardScore, Ward
+    from app.data.schemas import WardScore, Ward
 except ImportError:
-    print("Warning: schemas.py not found in same directory")
+    from schemas import WardScore, Ward
 
 # api import
 try:
@@ -213,7 +213,9 @@ def extract_metric_breakdown(properties: Dict[str, Any], geometry: Dict[str, Any
     # fallback to static pollution_score if real-time unavailable
     if environment_score is None:
         environment_score = normalize_score(properties.get("pollution_score"))
-
+    landfill_penalty = properties.get("landfill_penalty")
+    if environment_score is not None and landfill_penalty is not None:
+        environment_score = max(0.0, environment_score - float(landfill_penalty))
     return WardScore(
         overall_score=overall_score,
         healthcare_access=normalize_score(properties.get("hospital_score")),
