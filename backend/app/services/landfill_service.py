@@ -57,8 +57,8 @@ def nearest_landfill_distance_km(lat: float, lng: float, city: str = "Delhi") ->
     landfills = get_landfill_locations(city)
     if landfills is None or len(landfills) == 0:
         return None
-    point = gpd.GeoSeries([Point(lng, lat)], crs=4326).to_crs(epsg=3857).iloc[0]
-    dists_m = landfills.to_crs(epsg=3857).distance(point)
+    point = gpd.GeoSeries([Point(lng, lat)], crs=4326).to_crs(epsg=32643).iloc[0]
+    dists_m = landfills.to_crs(epsg=32643).distance(point)
     return float(dists_m.min() / 1000) if len(dists_m) else None
 
 

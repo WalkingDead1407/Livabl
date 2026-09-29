@@ -20,7 +20,7 @@ function getWardColor(score: number): string {
 
 function getTileUrl(theme: 'light' | 'dark'): string {
   return theme === 'dark'
-    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`
     : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 }
 
